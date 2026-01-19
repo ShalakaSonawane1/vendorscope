@@ -70,7 +70,7 @@ class RAGEngine:
             params['doc_types'] = tuple(document_types)
         
         query_sql += """
-            ORDER BY dc.embedding <=> :embedding::vector
+            ORDER BY dc.embedding <=> CAST(:embedding AS vector)
             LIMIT :limit
         """
         params['limit'] = top_k
