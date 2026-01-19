@@ -51,7 +51,7 @@ class RAGEngine:
                 d.document_type,
                 v.name as vendor_name,
                 v.id as vendor_id,
-                1 - (dc.embedding <=> :embedding::vector) as similarity
+                1 - (dc.embedding <=> CAST(:embedding AS vector)) as similarity
             FROM document_chunks dc
             JOIN documents d ON dc.document_id = d.id
             JOIN vendors v ON dc.vendor_id = v.id
